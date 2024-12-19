@@ -113,7 +113,9 @@ function App() {
             className="p-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-colors"
             aria-label="Toggle theme"
           >
-            {isDark ? '☀️' : '🌙'}
+            <span className="dark:text-text-dark text-text-light">
+              {isDark ? 'Light' : 'Dark'}
+            </span>
           </button>
         </div>
       </header>
