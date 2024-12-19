@@ -101,16 +101,16 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen dark:bg-nord0 bg-nord6 dark:text-nord4 text-nord1">
-      <header className="dark:bg-nord1 bg-nord5 border-b dark:border-nord2 border-nord4 py-6">
+    <div className="min-h-screen dark:bg-background-dark bg-background-light dark:text-text-dark text-text-light">
+      <header className="dark:bg-surface-dark bg-surface-light border-b dark:border-gray-700 border-gray-200 py-6">
         <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
           <div>
-          <h1 className="text-2xl font-bold dark:text-nord6 text-nord0">TacoVault</h1>
-          <p className="text-sm dark:text-nord4 text-nord3 mt-1">Wrap your files in security</p>
+          <h1 className="text-2xl font-bold dark:text-text-dark text-text-light">TacoVault</h1>
+          <p className="text-sm dark:text-muted-dark text-muted-light mt-1">Wrap your files in security</p>
           </div>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-nord3/20 dark:hover:bg-nord4/10 transition-colors"
+            className="p-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-colors"
             aria-label="Toggle theme"
           >
             {isDark ? '☀️' : '🌙'}
@@ -119,7 +119,7 @@ function App() {
       </header>
       
       <main className="max-w-6xl mx-auto px-4 py-12">
-        <div className="dark:bg-nord1 bg-nord5 rounded-xl p-8 shadow-lg">
+        <div className="dark:bg-surface-dark bg-surface-light rounded-xl p-8 shadow-lg">
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-2">Secure File Storage</h2>
             <p className="dark:text-nord4 text-nord3">Store your files securely using Threshold's decentralized network</p>
@@ -133,12 +133,12 @@ function App() {
             <input
               type="file"
               onChange={handleFileUpload}
-              className="block w-full text-sm dark:text-nord4 text-nord3
+              className="block w-full text-sm dark:text-text-dark text-text-light
                 file:mr-4 file:py-3 file:px-6
                 file:rounded-lg file:border-0
                 file:text-sm file:font-semibold
-                file:bg-nord8 file:text-nord0
-                hover:file:bg-nord9
+                file:bg-primary file:text-white
+                hover:file:bg-primary-dark
                 cursor-pointer"
             />
           </div>
@@ -153,20 +153,20 @@ function App() {
                 {files.map((file) => (
                   <li
                     key={file.id}
-                    className="flex items-center justify-between p-4 dark:bg-nord2 bg-nord4 rounded-lg border dark:border-nord3 border-nord5"
+                    className="flex items-center justify-between p-4 dark:bg-gray-800 bg-gray-100 rounded-lg border dark:border-gray-700 border-gray-200"
                   >
                     <div 
-                      className="flex-1 cursor-pointer dark:hover:bg-nord3 hover:bg-nord5 px-2 py-1 rounded"
+                      className="flex-1 cursor-pointer dark:hover:bg-gray-700 hover:bg-gray-200 px-2 py-1 rounded"
                       onClick={() => handleFileOpen(file.id)}
                     >
-                      <p className="font-medium dark:text-nord6 text-nord0">{file.name}</p>
-                      <p className="text-sm dark:text-nord4 text-nord3">
+                      <p className="font-medium dark:text-text-dark text-text-light">{file.name}</p>
+                      <p className="text-sm dark:text-muted-dark text-muted-light">
                         {formatFileSize(file.size)} • {file.type || 'Unknown type'}
                       </p>
                     </div>
                     <button
                       onClick={() => handleDelete(file.id)}
-                      className="px-4 py-2 text-sm font-medium text-nord0 bg-nord11 rounded-lg hover:bg-nord12 transition-colors"
+                      className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
                     >
                       Delete
                     </button>

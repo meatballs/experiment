@@ -10,10 +10,10 @@
   }
   
   .dark {
-    @apply bg-nord0 text-nord4;
+    @apply bg-background-dark text-text-dark;
   }
   
   .light {
-    @apply bg-nord6 text-nord1;
+    @apply bg-background-light text-text-light;
   }
 }
