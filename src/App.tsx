@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { storeFile, getAllFiles, deleteFile } from './services/fileStorage'
+import { storeFile, getAllFiles, deleteFile, getFile } from './services/fileStorage'
 
 interface StoredFile {
   id: string
@@ -32,6 +32,38 @@ function App() {
     } catch (error) {
       console.error('Error uploading file:', error)
       alert('Failed to upload file')
+    }
+  }
+
+  const handleFileOpen = async (id: string) => {
+    try {
+      const file = await getFile(id)
+      if (!file) {
+        alert('File not found')
+        return
+      }
+
+      const blob = new Blob([file.data], { type: file.type })
+      const url = URL.createObjectURL(blob)
+
+      // Try to open in new tab first
+      const newWindow = window.open(url, '_blank')
+      
+      // If blocked or not supported, try download
+      if (!newWindow) {
+        const a = document.createElement('a')
+        a.href = url
+        a.download = file.name
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+      }
+
+      // Cleanup
+      setTimeout(() => URL.revokeObjectURL(url), 1000)
+    } catch (error) {
+      console.error('Error opening file:', error)
+      alert('Failed to open file')
     }
   }
 
@@ -97,7 +129,10 @@ function App() {
                     key={file.id}
                     className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700"
                   >
-                    <div>
+                    <div 
+                      className="flex-1 cursor-pointer hover:bg-gray-700 px-2 py-1 rounded"
+                      onClick={() => handleFileOpen(file.id)}
+                    >
                       <p className="font-medium text-white">{file.name}</p>
                       <p className="text-sm text-gray-400">
                         {formatFileSize(file.size)} • {file.type || 'Unknown type'}

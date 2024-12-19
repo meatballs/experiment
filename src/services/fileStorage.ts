@@ -47,3 +47,8 @@ export async function deleteFile(id: string): Promise<void> {
   const db = await initDB()
   await db.delete(storeName, id)
 }
+
+export async function getFile(id: string): Promise<StoredFile | undefined> {
+  const db = await initDB()
+  return db.get(storeName, id)
+}
