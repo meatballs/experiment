@@ -176,7 +176,7 @@ function App() {
                     </div>
                     <div className="flex gap-2">
                       <button
-                        onClick={() => toast.info('Sharing feature coming soon!')}
+                        onClick={() => toast('Sharing feature coming soon!')}
                         className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
                         title="Share this file"
                       >
