@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, useLayoutEffect } from 'react'
-import { Sun, Moon, Trash2 } from 'lucide-react'
+import { Sun, Moon, Trash2, Share2 } from 'lucide-react'
+import toast, { Toaster } from 'react-hot-toast'
 import { storeFile, getAllFiles, deleteFile, getFile } from './services/fileStorage'
 
 interface StoredFile {
@@ -103,6 +104,7 @@ function App() {
 
   return (
     <div className="min-h-screen dark:bg-background-dark bg-background-light dark:text-text-dark text-text-light">
+      <Toaster position="bottom-right" />
       <header className="dark:bg-surface-dark bg-surface-light border-b dark:border-gray-700 border-gray-200 py-6">
         <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
           <div>
@@ -172,13 +174,22 @@ function App() {
                         {formatFileSize(file.size)} • {file.type || 'Unknown type'}
                       </p>
                     </div>
-                    <button
-                      onClick={() => handleDelete(file.id)}
-                      className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
-                      title="Delete this file"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => toast.info('Sharing feature coming soon!')}
+                        className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
+                        title="Share this file"
+                      >
+                        <Share2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(file.id)}
+                        className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
+                        title="Delete this file"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
