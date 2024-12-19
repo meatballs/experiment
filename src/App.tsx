@@ -55,7 +55,8 @@ function App() {
     <div className="min-h-screen bg-secondary text-white">
       <header className="bg-secondary border-b border-gray-800 py-6">
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-2xl font-bold text-white">Threshold Storage</h1>
+          <h1 className="text-2xl font-bold text-white">TacoVault</h1>
+          <p className="text-sm text-gray-400 mt-1">Wrap your files in security</p>
         </div>
       </header>
       
