@@ -52,49 +52,59 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-white p-8 rounded-lg shadow-md">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6">File Storage</h1>
+    <div className="min-h-screen bg-secondary text-white">
+      <header className="bg-secondary border-b border-gray-800 py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <h1 className="text-2xl font-bold text-white">Threshold Storage</h1>
+        </div>
+      </header>
+      
+      <main className="max-w-6xl mx-auto px-4 py-12">
+        <div className="bg-gray-900 rounded-xl p-8 shadow-lg">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold mb-2">Secure File Storage</h2>
+            <p className="text-gray-400">Store your files securely using Threshold's decentralized network</p>
+          </div>
           
           {/* File Upload */}
-          <div className="mb-8">
-            <label className="block mb-2 text-sm font-medium text-gray-700">
+          <div className="mb-12">
+            <label className="block mb-3 text-lg font-medium text-white">
               Upload File
             </label>
             <input
               type="file"
               onChange={handleFileUpload}
-              className="block w-full text-sm text-gray-500
-                file:mr-4 file:py-2 file:px-4
-                file:rounded-md file:border-0
+              className="block w-full text-sm text-gray-400
+                file:mr-4 file:py-3 file:px-6
+                file:rounded-lg file:border-0
                 file:text-sm file:font-semibold
-                file:bg-blue-50 file:text-blue-700
-                hover:file:bg-blue-100"
+                file:bg-primary file:text-white
+                hover:file:bg-primary-dark
+                cursor-pointer"
             />
           </div>
 
           {/* File List */}
           <div>
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Stored Files</h2>
+            <h3 className="text-xl font-semibold mb-6">Stored Files</h3>
             {files.length === 0 ? (
-              <p className="text-gray-500">No files stored yet</p>
+              <p className="text-gray-400">No files stored yet</p>
             ) : (
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {files.map((file) => (
                   <li
                     key={file.id}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700"
                   >
                     <div>
-                      <p className="font-medium text-gray-800">{file.name}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="font-medium text-white">{file.name}</p>
+                      <p className="text-sm text-gray-400">
                         {formatFileSize(file.size)} • {file.type || 'Unknown type'}
                       </p>
                     </div>
                     <button
                       onClick={() => handleDelete(file.id)}
-                      className="text-red-600 hover:text-red-800"
+                      className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
                     >
                       Delete
                     </button>
@@ -104,7 +114,7 @@ function App() {
             )}
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
