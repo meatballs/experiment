@@ -110,7 +110,7 @@ function App() {
           </div>
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg bg-primary hover:bg-primary-dark transition-colors"
+            className="p-2 rounded-lg hover:bg-nord3/20 dark:hover:bg-nord4/10 transition-colors"
             aria-label="Toggle theme"
           >
             {isDark ? '☀️' : '🌙'}
