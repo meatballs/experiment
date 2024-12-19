@@ -10,10 +10,10 @@
   }
   
   .dark {
-    @apply bg-secondary text-white;
+    @apply bg-nord0 text-nord4;
   }
   
   .light {
-    @apply bg-gray-100 text-gray-900;
+    @apply bg-nord6 text-nord1;
   }
 }

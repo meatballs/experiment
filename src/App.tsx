@@ -101,12 +101,12 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen dark:bg-secondary bg-gray-100 dark:text-white text-gray-900">
-      <header className="dark:bg-secondary bg-white border-b dark:border-gray-800 border-gray-200 py-6">
+    <div className="min-h-screen dark:bg-nord0 bg-nord6 dark:text-nord4 text-nord1">
+      <header className="dark:bg-nord1 bg-nord5 border-b dark:border-nord2 border-nord4 py-6">
         <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
           <div>
-          <h1 className="text-2xl font-bold text-white">TacoVault</h1>
-          <p className="text-sm dark:text-gray-400 text-gray-600 mt-1">Wrap your files in security</p>
+          <h1 className="text-2xl font-bold dark:text-nord6 text-nord0">TacoVault</h1>
+          <p className="text-sm dark:text-nord4 text-nord3 mt-1">Wrap your files in security</p>
           </div>
           <button
             onClick={toggleTheme}
@@ -119,10 +119,10 @@ function App() {
       </header>
       
       <main className="max-w-6xl mx-auto px-4 py-12">
-        <div className="dark:bg-gray-900 bg-white rounded-xl p-8 shadow-lg">
+        <div className="dark:bg-nord1 bg-nord5 rounded-xl p-8 shadow-lg">
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-2">Secure File Storage</h2>
-            <p className="dark:text-gray-400 text-gray-600">Store your files securely using Threshold's decentralized network</p>
+            <p className="dark:text-nord4 text-nord3">Store your files securely using Threshold's decentralized network</p>
           </div>
           
           {/* File Upload */}
@@ -133,12 +133,12 @@ function App() {
             <input
               type="file"
               onChange={handleFileUpload}
-              className="block w-full text-sm dark:text-gray-400 text-gray-600
+              className="block w-full text-sm dark:text-nord4 text-nord3
                 file:mr-4 file:py-3 file:px-6
                 file:rounded-lg file:border-0
                 file:text-sm file:font-semibold
-                file:bg-primary file:text-white
-                hover:file:bg-primary-dark
+                file:bg-nord8 file:text-nord0
+                hover:file:bg-nord9
                 cursor-pointer"
             />
           </div>
@@ -153,20 +153,20 @@ function App() {
                 {files.map((file) => (
                   <li
                     key={file.id}
-                    className="flex items-center justify-between p-4 dark:bg-gray-800 bg-gray-50 rounded-lg border dark:border-gray-700 border-gray-200"
+                    className="flex items-center justify-between p-4 dark:bg-nord2 bg-nord4 rounded-lg border dark:border-nord3 border-nord5"
                   >
                     <div 
-                      className="flex-1 cursor-pointer dark:hover:bg-gray-700 hover:bg-gray-100 px-2 py-1 rounded"
+                      className="flex-1 cursor-pointer dark:hover:bg-nord3 hover:bg-nord5 px-2 py-1 rounded"
                       onClick={() => handleFileOpen(file.id)}
                     >
-                      <p className="font-medium dark:text-white text-gray-900">{file.name}</p>
-                      <p className="text-sm dark:text-gray-400 text-gray-600">
+                      <p className="font-medium dark:text-nord6 text-nord0">{file.name}</p>
+                      <p className="text-sm dark:text-nord4 text-nord3">
                         {formatFileSize(file.size)} • {file.type || 'Unknown type'}
                       </p>
                     </div>
                     <button
                       onClick={() => handleDelete(file.id)}
-                      className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+                      className="px-4 py-2 text-sm font-medium text-nord0 bg-nord11 rounded-lg hover:bg-nord12 transition-colors"
                     >
                       Delete
                     </button>

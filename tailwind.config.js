@@ -8,23 +8,32 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Polar Night
+        nord0: '#2E3440',
+        nord1: '#3B4252',
+        nord2: '#434C5E',
+        nord3: '#4C566A',
+        // Snow Storm
+        nord4: '#D8DEE9',
+        nord5: '#E5E9F0',
+        nord6: '#ECEFF4',
+        // Frost
+        nord7: '#8FBCBB',
+        nord8: '#88C0D0',
+        nord9: '#81A1C1',
+        nord10: '#5E81AC',
+        // Aurora
+        nord11: '#BF616A',
+        nord12: '#D08770',
+        nord13: '#EBCB8B',
+        nord14: '#A3BE8C',
+        nord15: '#B48EAD',
+        // Aliases for semantic usage
         primary: {
-          DEFAULT: '#1E65F3',
-          dark: '#1557D9',
+          DEFAULT: '#88C0D0', // nord8
+          dark: '#81A1C1', // nord9
         },
-        secondary: '#0A0B0D',
-        accent: '#00E0FF',
-        gray: {
-          100: '#F8F9FA',
-          200: '#E9ECEF',
-          300: '#DEE2E6',
-          400: '#CED4DA',
-          500: '#ADB5BD',
-          600: '#6C757D',
-          700: '#495057',
-          800: '#343A40',
-          900: '#212529',
-        }
+        secondary: '#2E3440', // nord0
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
