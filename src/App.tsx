@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState, useLayoutEffect } from 'react'
+import { Sun, Moon, Trash2 } from 'lucide-react'
 import { storeFile, getAllFiles, deleteFile, getFile } from './services/fileStorage'
 
 interface StoredFile {
@@ -113,9 +114,11 @@ function App() {
             className="p-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-colors"
             aria-label="Toggle theme"
           >
-            <span className="dark:text-text-dark text-text-light">
-              {isDark ? '☀' : '☾'}
-            </span>
+            {isDark ? (
+              <Sun className="w-5 h-5 dark:text-text-dark text-text-light" />
+            ) : (
+              <Moon className="w-5 h-5 dark:text-text-dark text-text-light" />
+            )}
           </button>
         </div>
       </header>
@@ -170,7 +173,7 @@ function App() {
                       onClick={() => handleDelete(file.id)}
                       className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
                     >
-                      Delete
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </li>
                 ))}
