@@ -4,12 +4,18 @@ const dbName = 'fileStorageDB'
 const storeName = 'files'
 
 interface StoredFile {
-  id: string
+  id: string // SHA-256 hash
   name: string
   type: string
   size: number
   data: ArrayBuffer
   timestamp: number
+}
+
+async function computeFileHash(data: ArrayBuffer): Promise<string> {
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+  const hashArray = Array.from(new Uint8Array(hashBuffer))
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
 }
 
 export async function initDB() {
@@ -24,9 +30,10 @@ export async function initDB() {
 export async function storeFile(file: File): Promise<StoredFile> {
   const db = await initDB()
   const arrayBuffer = await file.arrayBuffer()
+  const fileHash = await computeFileHash(arrayBuffer)
   
   const storedFile: StoredFile = {
-    id: crypto.randomUUID(),
+    id: fileHash,
     name: file.name,
     type: file.type,
     size: file.size,
