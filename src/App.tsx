@@ -113,6 +113,7 @@ function App() {
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-colors"
             aria-label="Toggle theme"
+            title="Switch between light and dark mode"
           >
             {isDark ? (
               <Sun className="w-5 h-5 dark:text-text-dark text-text-light" />
@@ -138,7 +139,8 @@ function App() {
             <input
               type="file"
               onChange={handleFileUpload}
-              className="block w-full text-sm dark:text-text-dark text-text-light
+              className="block w-full text-sm dark:text-text-dark text-text-light"
+              title="Click to select a file to upload"
                 file:mr-4 file:py-3 file:px-6
                 file:rounded-lg file:border-0
                 file:text-sm file:font-semibold
@@ -163,6 +165,7 @@ function App() {
                     <div 
                       className="flex-1 cursor-pointer dark:hover:bg-gray-700 hover:bg-gray-200 px-2 py-1 rounded"
                       onClick={() => handleFileOpen(file.id)}
+                      title="Click to open or download this file"
                     >
                       <p className="font-medium dark:text-text-dark text-text-light">{file.name}</p>
                       <p className="text-sm dark:text-muted-dark text-muted-light">
@@ -172,6 +175,7 @@ function App() {
                     <button
                       onClick={() => handleDelete(file.id)}
                       className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
+                      title="Delete this file"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
