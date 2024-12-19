@@ -114,7 +114,7 @@ function App() {
             aria-label="Toggle theme"
           >
             <span className="dark:text-text-dark text-text-light">
-              {isDark ? 'Light' : 'Dark'}
+              {isDark ? '☀' : '☾'}
             </span>
           </button>
         </div>
