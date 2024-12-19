@@ -130,7 +130,7 @@ function App() {
         <div className="dark:bg-surface-dark bg-surface-light rounded-xl p-8 shadow-lg">
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-2">Secure File Sharing</h2>
-            <p className="dark:text-nord4 text-nord3">Store your files securely using Threshold's decentralized network</p>
+            <p className="dark:text-nord4 text-nord3">Share your files securely using Threshold's decentralized network</p>
           </div>
           
           {/* File Upload */}
