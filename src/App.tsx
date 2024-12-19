@@ -139,14 +139,14 @@ function App() {
             <input
               type="file"
               onChange={handleFileUpload}
-              className="block w-full text-sm dark:text-text-dark text-text-light"
-              title="Click to select a file to upload"
+              className="block w-full text-sm dark:text-text-dark text-text-light
                 file:mr-4 file:py-3 file:px-6
                 file:rounded-lg file:border-0
                 file:text-sm file:font-semibold
                 file:bg-primary file:text-white
                 hover:file:bg-primary-dark
                 cursor-pointer"
+              title="Click to select a file to upload"
             />
           </div>
 
