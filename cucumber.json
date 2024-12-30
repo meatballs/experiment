@@ -1,0 +1,22 @@
+{
+  "default": {
+    "paths": [
+      "tests/acceptance/features/**/*.feature"
+    ],
+    "loader": ["ts-node/esm"],
+    "import": [
+      "tests/acceptance/steps/**/*.ts"
+    ],
+    "format": [
+      "progress-bar",
+      "html:cucumber-report.html",
+      "json:cucumber-report.json"
+    ],
+    "formatOptions": {
+      "snippetInterface": "async-aware"
+    },
+    "parallel": 2,
+    "tags": "not @skip",
+    "retry": 1
+  }
+}

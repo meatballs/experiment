@@ -11,7 +11,7 @@ interface StoredFile {
   timestamp: number
 }
 
-function App() {
+function App(): JSX.Element {
   const [files, setFiles] = useState<StoredFile[]>([])
   const [isDark, setIsDark] = useState(true)
 
@@ -29,9 +29,9 @@ function App() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
   }, [isDark])
 
-  const toggleTheme = () => setIsDark(!isDark)
+  const toggleTheme = (): void => setIsDark(!isDark)
 
-  const loadFiles = useCallback(async () => {
+  const loadFiles = useCallback(async (): Promise<void> => {
     const storedFiles = await getAllFiles()
     setFiles(storedFiles)
   }, [])
@@ -40,7 +40,7 @@ function App() {
     loadFiles()
   }, [loadFiles])
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const fileList = event.target.files
     if (!fileList?.length) return
 
@@ -54,7 +54,7 @@ function App() {
     }
   }
 
-  const handleFileOpen = async (id: string) => {
+  const handleFileOpen = async (id: string): Promise<void> => {
     try {
       const file = await getFile(id)
       if (!file) {
@@ -86,7 +86,7 @@ function App() {
     }
   }
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string): Promise<void> => {
     try {
       await deleteFile(id)
       await loadFiles()
@@ -96,7 +96,7 @@ function App() {
     }
   }
 
-  const formatFileSize = (bytes: number) => {
+  const formatFileSize = (bytes: number): string => {
     if (bytes < 1024) return bytes + ' B'
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
@@ -115,7 +115,7 @@ function App() {
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-700/50 transition-colors"
             aria-label="Toggle theme"
-            title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {isDark ? (
               <Sun className="w-5 h-5 dark:text-text-dark text-text-light" />
@@ -130,7 +130,7 @@ function App() {
         <div className="dark:bg-surface-dark bg-surface-light rounded-xl p-8 shadow-lg">
           <div className="mb-12">
             <h2 className="text-3xl font-bold mb-2">Secure File Sharing</h2>
-            <p className="dark:text-nord4 text-nord3">Share your files securely using Threshold's decentralized network</p>
+            <p className="dark:text-nord4 text-nord3">Share your files securely using Threshold&apos;s decentralized network</p>
           </div>
           
           {/* File Upload */}
@@ -162,17 +162,22 @@ function App() {
                 {files.map((file) => (
                   <li
                     key={file.id}
-                    className="flex items-center justify-between p-4 dark:bg-gray-800 bg-gray-100 rounded-lg border dark:border-gray-700 border-gray-200"
+                    data-file-id={file.id}
+                    className="file-item flex items-center justify-between p-4 dark:bg-gray-800 bg-gray-100 rounded-lg border dark:border-gray-700 border-gray-200"
                   >
                     <div 
                       className="flex-1 cursor-pointer dark:hover:bg-gray-700 hover:bg-gray-200 px-2 py-1 rounded"
                       onClick={() => handleFileOpen(file.id)}
                       title="Click to open or download this file"
                     >
-                      <p className="font-medium dark:text-text-dark text-text-light">{file.name}</p>
-                      <p className="text-sm dark:text-muted-dark text-muted-light">
-                        {formatFileSize(file.size)} • {file.type || 'Unknown type'}
-                      </p>
+                      <div className="file-details">
+                        <p className="file-name font-medium dark:text-text-dark text-text-light">{file.name}</p>
+                        <p className="file-info text-sm dark:text-muted-dark text-muted-light">
+                          <span className="file-size">{formatFileSize(file.size)}</span> • 
+                          <span className="file-type">{file.type || 'Unknown type'}</span> • 
+                          <span className="file-timestamp">{new Date(file.timestamp).toLocaleString()}</span>
+                        </p>
+                      </div>
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -186,6 +191,7 @@ function App() {
                         onClick={() => handleDelete(file.id)}
                         className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
                         title="Delete this file"
+                        aria-label="Delete file"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>

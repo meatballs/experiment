@@ -1,4 +1,4 @@
-import { openDB } from 'idb'
+import { openDB, IDBPDatabase } from 'idb'
 
 const dbName = 'fileStorageDB'
 const storeName = 'files'
@@ -15,10 +15,10 @@ interface StoredFile {
 async function computeFileHash(data: ArrayBuffer): Promise<string> {
   const hashBuffer = await crypto.subtle.digest('SHA-256', data)
   const hashArray = Array.from(new Uint8Array(hashBuffer))
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+  return hashArray.map((b): string => b.toString(16).padStart(2, '0')).join('')
 }
 
-export async function initDB() {
+export async function initDB(): Promise<IDBPDatabase> {
   const db = await openDB(dbName, 1, {
     upgrade(db) {
       db.createObjectStore(storeName, { keyPath: 'id' })
