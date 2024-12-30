@@ -13,9 +13,20 @@ interface StoredFile {
 }
 
 async function computeFileHash(data: ArrayBuffer): Promise<string> {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  return hashArray.map((b): string => b.toString(16).padStart(2, '0')).join('')
+  // Check if Web Crypto API is available
+  if (window.crypto && window.crypto.subtle) {
+    try {
+      const hashBuffer = await window.crypto.subtle.digest('SHA-256', data)
+      const hashArray = Array.from(new Uint8Array(hashBuffer))
+      return hashArray.map((b): string => b.toString(16).padStart(2, '0')).join('')
+    } catch (error) {
+      console.warn('Web Crypto API failed:', error)
+      // Fallback to simple timestamp-based ID if crypto fails
+      return Date.now().toString(36) + Math.random().toString(36).substr(2)
+    }
+  }
+  // Fallback for browsers without Web Crypto API
+  return Date.now().toString(36) + Math.random().toString(36).substr(2)
 }
 
 export async function initDB(): Promise<IDBPDatabase> {
